@@ -1,6 +1,6 @@
-# **Docker Setup Guide for Ubunto ROS2- Jazzy**
+# **Docker Setup Guide for Ubunto22 ROS2- Humble- PX4 - Gazebo gz**
 
-This documentation provides a step-by-step guide on how to install Docker locally on a Linux system and use it as a container for `Ros2/Jazzy`.
+This documentation provides a step-by-step guide on how to install Docker locally on a Linux system and use it as a container for `Ros2/Humble`.
 
 ---
 
@@ -33,24 +33,27 @@ sudo usermod -aG docker $USER
 The following command builds the Docker image on your host machine. This step is required only once unless you modify the `Dockerfile`.
 
 ```bash
-git clone https://github.com/alisrour97/Docker_ubunto_24-Ros_jazzy.git
-cd Docker_ubunto_24-Ros_jazzy
-./build.bash Jazzy
+git clone https://github.com/alisrour97/px4-dev-simulation-ros2-humble.git
+cd px4-dev-simulation-ros2-humble
+./build.bash Humble
 ```
 
 ---
 
 ## **3. Run the Docker Container**
 
-Before running the docker **Copy the `create_dc_ros2.sh` script** inside `Ros2-ws`.
-Each time you need to enter the Docker container, execute the following steps:
+Before running the docker **Copy the `create_px4_container.sh` script** inside `PX4_Experiments` or
+any directory of choice where you have your ROS2 nodes/ws. If you change ws name from `PX4_Experiments`, you just need to modify it
+from the script `create_px4_container.sh`.
+
+Enter the Docker container, execute the following steps:
 
 ```bash
 chmod +x create_dc_ros2.sh
 ./create_dc_ros2.sh
 ```
 
-This starts the Docker container, and its name will be `dc_ros2`.
+This starts the Docker container, and its name will be `px4_ros2`.
 Just as a note `chmod +x ` is required only once to give permission.
 
 ---
@@ -60,7 +63,7 @@ Just as a note `chmod +x ` is required only once to give permission.
 If you need to open another instance in a separate terminal, use:
 
 ```bash
-docker exec -u 0 -it dc_ros2 bash
+docker exec -u 0 -it px4_ros2 bash
 ```
 
 To close the container, simply press `Ctrl+D` inside the container.
@@ -68,26 +71,26 @@ To close the container, simply press `Ctrl+D` inside the container.
 To restart it later, use:
 
 ```bash
-docker start dc_ros2
-docker attach dc_ros2
+docker start px4_ros2
+docker attach px4_ros2
 ```
 
 If you want to remove the container:
 
 ```bash
-docker rm dc_ros2
+docker rm px4_ros2
 ```
 
 If the `./create_dc_ros2.sh` script does not open the container, an old instance may still be running. Remove it using:
 
 ```bash
-docker rm dc_ros2
+docker rm px4_ros2
 ```
 
 Then, re-run the script:
 
 ```bash
-./create_dc_ros2.sh
+./create_px4_container.sh
 ```
 
 ---
