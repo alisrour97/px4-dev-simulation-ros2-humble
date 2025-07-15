@@ -49,8 +49,8 @@ from the script `create_px4_container.sh`.
 Enter the Docker container, execute the following steps:
 
 ```bash
-chmod +x create_dc_ros2.sh
-./create_dc_ros2.sh
+chmod +x create_px4_container.sh
+./create_px4_container.sh
 ```
 
 This starts the Docker container, and its name will be `px4_ros2`.
@@ -81,7 +81,7 @@ If you want to remove the container:
 docker rm px4_ros2
 ```
 
-If the `./create_dc_ros2.sh` script does not open the container, an old instance may still be running. Remove it using:
+If the `./create_px4_container.sh` script does not open the container, an old instance may still be running. Remove it using:
 
 ```bash
 docker rm px4_ros2
